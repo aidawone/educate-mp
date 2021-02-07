@@ -1,0 +1,16 @@
+# 服务端口
+server:
+  port: 8080
+# 数据库设计
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/educate?serverTimezone=GMT
+    username: root
+    password: root
+
+
+# mybatis-plus调试日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
