@@ -1,17 +1,24 @@
 package he.edu.eduservice.controller;
 
-import org.apache.poi.ss.formula.functions.T;
-
-import java.util.List;
+import he.edu.commonutils.entity.ResultEntity;
+import he.edu.eduservice.service.BaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 /**
- * TODO
+ * crud控制器
  * @Author: aidawone
  * @Description:
  * @Date: Create in 14:20 2021/2/7
  */
-public interface BaseController {
-    List<T> index();
+public class BaseController {
 
+    @Autowired
+    BaseService baseService;
+
+    @DeleteMapping("/status")
+    public ResultEntity status(String id, Integer status) {
+        return baseService.status(id, status);
+    }
 
 }
