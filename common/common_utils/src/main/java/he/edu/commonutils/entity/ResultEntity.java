@@ -3,8 +3,6 @@ package he.edu.commonutils.entity;
 import he.edu.commonutils.conant.ResultCode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.models.auth.In;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -90,11 +88,14 @@ public class ResultEntity {
 
     /**
      * 返回页码
+     *
      * @param total 总条数
      * @return
      */
-    public ResultEntity total(Integer total) {
+    public ResultEntity page(Long total, Long size, Long page) {
         this.data.put("total", total);
+        this.data.put("size", size);
+        this.data.put("page", page);
         return this;
     }
 }
