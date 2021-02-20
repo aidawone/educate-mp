@@ -16,4 +16,13 @@ public class HeException extends RuntimeException {
 
     private Integer code;
     private String msg;
+
+    @Override
+    public String toString() {
+        return "HeException{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
 }
+

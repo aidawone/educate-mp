@@ -6,3 +6,5 @@
 /service/service.iml
 /common/service_base/service_base.iml
 /service/service_edu/service_edu.iml
+/common/common_utils/target/classes/
+/common/service_base/target/classes/
