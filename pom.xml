@@ -44,6 +44,7 @@
 		<canal.client.version>1.1.0</canal.client.version>
 		<docker.image.prefix>zx</docker.image.prefix>
 		<cloud-alibaba.version>0.2.2.RELEASE</cloud-alibaba.version>
+		<easyexcel.version>2.1.1</easyexcel.version>
 	</properties>
 
 	<dependencyManagement>
@@ -120,6 +121,11 @@
 				<version>${poi.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>easyexcel</artifactId>
+				<version>${easyexcel.version}</version>
+			</dependency>
 			<!--文件上传-->
 			<dependency>
 				<groupId>commons-fileupload</groupId>
