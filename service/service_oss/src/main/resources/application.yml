@@ -15,6 +15,6 @@ alliyun:
   oss:
     file:
       endpoint: oss-cn-guangzhou.aliyuncs.com
-      keyId: LTAI4GCBmSbHEJGEDfeAMdt3
-      keySecret: yNEkIHs6vMf4kKUNDjeEUDzyvo1L91
+      keyId: 000
+      keySecret: 000
       bucketName: plat-bck
