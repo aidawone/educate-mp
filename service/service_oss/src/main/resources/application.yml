@@ -1,0 +1,20 @@
+# 激活
+spring:
+  profiles:
+    active: dev
+  application:
+    name: service_oss
+
+# 端口
+server:
+  port: 8002
+
+# 服务名
+
+alliyun:
+  oss:
+    file:
+      endpoint: oss-cn-guangzhou.aliyuncs.com
+      keyId: LTAI4GCBmSbHEJGEDfeAMdt3
+      keySecret: yNEkIHs6vMf4kKUNDjeEUDzyvo1L91
+      bucketName: plat-bck

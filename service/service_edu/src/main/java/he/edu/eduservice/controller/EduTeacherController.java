@@ -3,7 +3,6 @@ package he.edu.eduservice.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import he.edu.commonutils.entity.HeException;
 import he.edu.commonutils.entity.ResultEntity;
 import he.edu.eduservice.entity.EduTeacher;
 import he.edu.eduservice.service.EduTeacherService;
@@ -15,7 +14,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -27,7 +25,8 @@ import java.util.Map;
  */
 @Api(description = "讲师管理")
 @RestController
-@RequestMapping("/eduservice/teacher")
+@RequestMapping("/back/teacher")
+@CrossOrigin
 public class EduTeacherController {
 
     final EduTeacherService eduTeacherService;
@@ -44,16 +43,8 @@ public class EduTeacherController {
      */
     @ApiOperation(value = "逻辑删除")
     @DeleteMapping("/delete")
-    public ResultEntity delete(@ApiParam(name = "id", value = "主键", required = true) String id, @ApiParam(name = "status", value = "是否删除") Integer status) {
-        boolean flag;
-        if (status.equals(0)) {
-            EduTeacher teacher = new EduTeacher();
-            teacher.setId(id);
-            teacher.setIsDeleted(false);
-            flag = eduTeacherService.updateById(teacher);
-        } else {
-            flag = eduTeacherService.removeById(id);
-        }
+    public ResultEntity delete(@ApiParam(name = "id", value = "主键", required = true) String id) {
+        boolean flag = eduTeacherService.removeById(id);
         if (!flag) {
             return ResultEntity.error();
         }
@@ -67,14 +58,12 @@ public class EduTeacherController {
      */
     @ApiOperation(value = "分页查询讲师列表")
     @GetMapping("/index")
-    public ResultEntity index(@RequestParam Map<String, Object> map) {
-        Integer page = 0;
-        Integer size = 20;
-        try {
-            page = (Integer.parseInt((String) map.get("page")));
-            size = Integer.parseInt((String) map.get("size"));
-        } catch (NumberFormatException e) {
-            System.out.println("number：" + e.getMessage());
+    public ResultEntity index(@ApiParam(name = "page", value = "当前页") Long page, @ApiParam(name = "size", value = "记录数") Long size) {
+        if (StringUtils.isEmpty(page)) {
+            page = 0L;
+        }
+        if (StringUtils.isEmpty(size)) {
+            size = 20L;
         }
 
         QueryWrapper<EduTeacher> wrapper = new QueryWrapper<>();
@@ -102,8 +91,9 @@ public class EduTeacherController {
      * @paam 参数
      */
     @ApiOperation(value = "条件查询讲师列表")
-    @PostMapping("/query")
-    public ResultEntity query(@RequestBody TeacherVo vo, Long page, Long size) {
+    @GetMapping(value = "/query")
+    public ResultEntity query(TeacherVo vo) {
+
         QueryWrapper<EduTeacher> wrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(vo.getLevel())) {
             wrapper.eq("level", vo.getLevel());
@@ -118,19 +108,19 @@ public class EduTeacherController {
             wrapper.le("gmt_create", vo.getEnd());
         }
 
-        if (StringUtils.isEmpty(page)) {
-            page = 0L;
+        if (StringUtils.isEmpty(vo.getPage())) {
+            vo.setPage(0L);
         }
-        if (StringUtils.isEmpty(size)) {
-            size = 20L;
+        if (StringUtils.isEmpty(vo.getSize())) {
+            vo.setSize(20L);
             //条件构造器
         }
-        Page<EduTeacher> build = new Page<>(page, size);
+        wrapper.orderByDesc("sort", "gmt_modified");
+        Page<EduTeacher> build = new Page<>(vo.getPage(), vo.getSize());
         eduTeacherService.page(build, wrapper);
         List<EduTeacher> records = build.getRecords();
 
-        List<EduTeacher> list = eduTeacherService.list(wrapper);
-        return ResultEntity.ok().page(build.getTotal(), build.getSize(), build.getCurrent()).data("items", list);
+        return ResultEntity.ok().page(build.getTotal(), build.getSize(), build.getCurrent()).data("items", records);
     }
 
     /**
@@ -155,10 +145,10 @@ public class EduTeacherController {
      */
     @ApiOperation(value = "根据id查询讲师列表")
     @GetMapping("/detail")
-    public ResultEntity detail(@RequestParam Integer id) {
+    public ResultEntity detail(String id) {
         EduTeacher ed = eduTeacherService.getById(id);
         if (!StringUtils.isEmpty(ed)) {
-            return ResultEntity.ok();
+            return ResultEntity.ok().data("item", ed);
         } else {
             return ResultEntity.error();
         }
@@ -171,11 +161,6 @@ public class EduTeacherController {
     @ApiOperation(value = "根据id修改讲师列表")
     @PutMapping("/update")
     public ResultEntity update(@RequestBody EduTeacher teacher) {
-        try {
-            int i = 10 / 0;
-        } catch (Exception e) {
-            throw new HeException(20002, "计算错误!!.");
-        }
 
         boolean flag = eduTeacherService.updateById(teacher);
         if (flag) {

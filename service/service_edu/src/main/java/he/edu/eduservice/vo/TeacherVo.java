@@ -1,8 +1,11 @@
 package he.edu.eduservice.vo;
 
+import he.edu.commonutils.entity.PageModel;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * @Author: aidawone
@@ -11,7 +14,7 @@ import lombok.Data;
  */
 @Data
 @Api(description = "讲师查询条件")
-public class TeacherVo {
+public class TeacherVo extends PageModel implements Serializable  {
 
     private static final long serialVersionUID = 1L;
     @ApiModelProperty(value = "教师名称,模糊查询")
