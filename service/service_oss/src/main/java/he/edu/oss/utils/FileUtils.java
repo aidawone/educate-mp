@@ -43,12 +43,13 @@ public class FileUtils {
     }
 
     /**
-     *上传到指定位置
+     * 上传到指定位置
+     *
      * @param path 文件存储到磁盘的路径
      * @param file 文件
      * @return
      */
-    public static String fileIo(String path, MultipartFile file) {
+    public static String fileIo(String path, MultipartFile file, String ip) {
         if (file.isEmpty()) {
             return null;
         }
@@ -89,6 +90,9 @@ public class FileUtils {
                 }
             }
         }
-        return path + "/" + fileName;
+        //返回的路径改变
+        path = path.substring(path.indexOf("/"));
+
+        return ip + path + "/" + fileName;
     }
 }

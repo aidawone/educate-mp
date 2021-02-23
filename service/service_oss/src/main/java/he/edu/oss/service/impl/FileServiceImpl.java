@@ -7,6 +7,8 @@ import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @Author: aidawone
  * @Description:
@@ -22,7 +24,7 @@ public class FileServiceImpl implements FileService {
      * @return
      */
     @Override
-    public String Fileupload(MultipartFile file) {
+    public String Fileupload(MultipartFile file, String ip) {
         //设置目录
         String path = new DateTime().toString("yyyy/MM/dd");
         char pathChar = OssPropertiesUtils.FILE_PATH.charAt(OssPropertiesUtils.FILE_PATH.length() - 1);
@@ -36,6 +38,6 @@ public class FileServiceImpl implements FileService {
             fileLocalPath = OssPropertiesUtils.FILE_PATH + "/" + path;
         }
 
-        return FileUtils.fileIo(fileLocalPath, file);
+        return FileUtils.fileIo(fileLocalPath, file, ip);
     }
 }

@@ -27,12 +27,18 @@ public class OssPropertiesUtils implements InitializingBean {
     @Value("${spring.resources.static-locations}")
     private String filePath;
 
+    @Value("${nginx.port}")
+    private String nginxPort;
+
     public static String END_POINT;
     public static String KEY_ID;
     public static String KEY_SECRET;
     public static String BUCKET_NAME;
 
     public static String FILE_PATH;
+
+    public static String NGINX_PORT;
+
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -41,6 +47,8 @@ public class OssPropertiesUtils implements InitializingBean {
         KEY_SECRET = keySecret;
         BUCKET_NAME = bucketName;
 
-        FILE_PATH = filePath.replace("file:","");
+        FILE_PATH = filePath.replace("file:", "");
+
+        NGINX_PORT = nginxPort;
     }
 }

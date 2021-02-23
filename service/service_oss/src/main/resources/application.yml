@@ -13,7 +13,7 @@ spring:
 
 # 端口
 server:
-  port: 8002
+  port: 8001
 
 # 服务名
 
@@ -24,3 +24,6 @@ alliyun:
       keyId: LTAI4GCBmSbHEJGEDfeAMdt3
       keySecret: yNEkIHs6vMf4kKUNDjeEUDzyvo1L91
       bucketName: plat-bck
+
+nginx:
+  port: 81

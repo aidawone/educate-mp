@@ -2,6 +2,8 @@ package he.edu.oss.controller;
 
 import he.edu.commonutils.entity.ResultEntity;
 import he.edu.oss.service.FileService;
+import he.edu.oss.utils.IpUtils;
+import he.edu.oss.utils.OssPropertiesUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @Date: Create in 13:10 2021/2/23
  */
 @RestController
-@RequestMapping("/back/file")
+@RequestMapping("/oss/file")
 @CrossOrigin
 public class FileController {
 
@@ -26,7 +28,7 @@ public class FileController {
 
     @PostMapping("/upload")
     public ResultEntity upload(MultipartFile file) {
-        String url = service.Fileupload(file);
+        String url = service.Fileupload(file, "http://" + IpUtils.getLocalIpAddr() + ":" + OssPropertiesUtils.NGINX_PORT);
 
         return ResultEntity.ok().data("url", url);
     }
