@@ -4,6 +4,12 @@ spring:
     active: dev
   application:
     name: service_oss
+  # 图片访问路径 磁盘
+  mvc:
+    static-path-pattern: /images/**
+  resources:
+    static-locations: file:E:/images/
+
 
 # 端口
 server:
@@ -15,6 +21,6 @@ alliyun:
   oss:
     file:
       endpoint: oss-cn-guangzhou.aliyuncs.com
-      keyId: 000
-      keySecret: 000
+      keyId: LTAI4GCBmSbHEJGEDfeAMdt3
+      keySecret: yNEkIHs6vMf4kKUNDjeEUDzyvo1L91
       bucketName: plat-bck

@@ -24,10 +24,15 @@ public class OssPropertiesUtils implements InitializingBean {
     @Value("${alliyun.oss.file.bucketName}")
     private String bucketName;
 
+    @Value("${spring.resources.static-locations}")
+    private String filePath;
+
     public static String END_POINT;
     public static String KEY_ID;
     public static String KEY_SECRET;
     public static String BUCKET_NAME;
+
+    public static String FILE_PATH;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -35,5 +40,7 @@ public class OssPropertiesUtils implements InitializingBean {
         KEY_ID = keyId;
         KEY_SECRET = keySecret;
         BUCKET_NAME = bucketName;
+
+        FILE_PATH = filePath.replace("file:","");
     }
 }
