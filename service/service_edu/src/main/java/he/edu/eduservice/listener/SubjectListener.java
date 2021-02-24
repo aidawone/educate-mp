@@ -32,14 +32,14 @@ public class SubjectListener extends AnalysisEventListener<ExcelSubject> {
             return;
         }
         //判断父级是否存在
-        EduSubject ParentEntity = new EduSubject();
-        ParentEntity.setId("0");
+        EduSubject parentEntity = new EduSubject();
+        parentEntity.setId("0");
         if (!StringUtils.isEmpty(excelSubject.getParentName())) {
-            ParentEntity = subjectService.existByName(excelSubject.getParentName());
-            if (StringUtils.isEmpty(ParentEntity)) {
-                ParentEntity = new EduSubject();
-                ParentEntity.setTitle(excelSubject.getParentName());
-                boolean save = subjectService.save(ParentEntity);
+            parentEntity = subjectService.existByName(excelSubject.getParentName());
+            if (StringUtils.isEmpty(parentEntity)) {
+                parentEntity = new EduSubject();
+                parentEntity.setTitle(excelSubject.getParentName());
+                boolean save = subjectService.save(parentEntity);
             }
         }
 
@@ -48,13 +48,13 @@ public class SubjectListener extends AnalysisEventListener<ExcelSubject> {
         if (StringUtils.isEmpty(entity)) {
             //不存在
             EduSubject subject = new EduSubject();
-            subject.setParentId(ParentEntity.getId());
+            subject.setParentId(parentEntity.getId());
             subject.setTitle(excelSubject.getName());
             subject.setSort(excelSubject.getSort());
             subjectService.save(subject);
         } else {
-            entity.setParentId(ParentEntity.getId());
-            entity.setSort(ParentEntity.getSort());
+            entity.setParentId(parentEntity.getId());
+            entity.setSort(parentEntity.getSort());
             subjectService.updateById(entity);
         }
         LOGGER.info("开始存储数据库！");
