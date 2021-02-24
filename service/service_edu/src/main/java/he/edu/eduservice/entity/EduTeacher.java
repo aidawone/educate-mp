@@ -1,6 +1,7 @@
 package he.edu.eduservice.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -22,6 +23,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value = "EduTeacher对象", description = "讲师")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class EduTeacher implements Serializable {
 
     private static final long serialVersionUID = 1L;

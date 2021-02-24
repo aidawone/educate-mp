@@ -13,37 +13,30 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <p>
- * 课程科目
+ * 课程简介
  * </p>
  *
  * @author aidawone
- * @since 2021-02-23
+ * @since 2021-02-24
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value = "EduSubject对象", description = "课程科目")
+@ApiModel(value="EduCourseDescription对象", description="课程简介")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class EduSubject implements Serializable {
+public class EduCourseDescription implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "课程类别ID")
-    @TableId(value = "id", type = IdType.ID_WORKER_STR)
+    @ApiModelProperty(value = "课程ID")
+    @TableId(value = "id", type = IdType.INPUT)
     private String id;
 
-    @ApiModelProperty(value = "类别名称")
-    private String title;
-
-    @ApiModelProperty(value = "父ID")
-    private String parentId;
-
-    @ApiModelProperty(value = "排序字段")
-    private Integer sort;
+    @ApiModelProperty(value = "课程简介")
+    private String description;
 
     @ApiModelProperty(value = "创建时间")
     @TableField(fill = FieldFill.INSERT)
@@ -52,9 +45,6 @@ public class EduSubject implements Serializable {
     @ApiModelProperty(value = "更新时间")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
-
-    @TableField(exist = false)
-    private List<EduSubject> child;
 
 
 }
