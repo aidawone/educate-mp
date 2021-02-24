@@ -2,12 +2,12 @@ package he.edu.eduservice.controller;
 
 
 import he.edu.commonutils.entity.ResultEntity;
+import he.edu.eduservice.entity.EduSubject;
 import he.edu.eduservice.service.EduSubjectService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * <p>
@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @since 2021-02-23
  */
 @RestController
-    @RequestMapping("/back/subject")
+@RequestMapping("/back/subject")
 @CrossOrigin
 public class EduSubjectController {
 
@@ -32,6 +32,12 @@ public class EduSubjectController {
     public ResultEntity lead(MultipartFile file) {
         subjectService.importByExcel(file, subjectService);
         return ResultEntity.ok();
+    }
+
+    @GetMapping("/index")
+    public ResultEntity index() {
+        List<EduSubject> listMap = subjectService.treeMap();
+        return ResultEntity.ok().data("items", listMap);
     }
 
 }
