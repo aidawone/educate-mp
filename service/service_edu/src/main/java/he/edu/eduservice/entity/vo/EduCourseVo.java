@@ -25,6 +25,9 @@ public class EduCourseVo {
     @ApiModelProperty(value = "课程专业ID")
     private String subjectId;
 
+    @ApiModelProperty(value = "课程父级ID")
+    private String subjectParentId;
+
     @ApiModelProperty(value = "课程标题")
     private String title;
 

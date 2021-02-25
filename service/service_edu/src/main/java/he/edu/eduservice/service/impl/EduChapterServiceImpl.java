@@ -2,6 +2,7 @@ package he.edu.eduservice.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import he.edu.commonutils.entity.HeException;
 import he.edu.eduservice.entity.EduChapter;
 import he.edu.eduservice.entity.EduVideo;
 import he.edu.eduservice.mapper.EduChapterMapper;
@@ -10,6 +11,7 @@ import he.edu.eduservice.service.EduVideoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +67,88 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
 
             chapter.setChild(childrens);
         }
-
         return chapters;
+    }
+
+    @Override
+    public String saveChapter(EduChapter chapter) {
+        if (StringUtils.isEmpty(chapter)) {
+            LOGGER.error("参数不能为空");
+            throw new HeException(20001, "参数不能为空!");
+        }
+        boolean save = this.save(chapter);
+        if (!save) {
+            LOGGER.error("章节插入数据库失败！");
+            throw new HeException(20001, "新增章节失败！");
+        }
+        return chapter.getId();
+    }
+
+    @Override
+    public String updateChapterById(EduChapter chapter) {
+
+        if (StringUtils.isEmpty(chapter) && StringUtils.isEmpty(chapter.getId())) {
+            LOGGER.error("参数不能为空");
+            throw new HeException(20001, "参数不能为空!");
+        }
+
+        QueryWrapper<EduChapter> wrapper = new QueryWrapper<>();
+        wrapper.eq("id", chapter.getId());
+        List<EduChapter> list = this.list(wrapper);
+
+        if (list.size() == 0) {
+            LOGGER.error("数据库中不存在该对象！");
+            throw new HeException(20001, "数据库中不存在该对象！");
+        }
+        boolean flag = this.updateById(chapter);
+
+        if (!flag) {
+            LOGGER.error("数据库中不存在该对象！");
+            throw new HeException(20001, "更新数据库失败！");
+        }
+        return chapter.getId();
+    }
+
+    @Override
+    public String deleteChapterById(String id) {
+        if (StringUtils.isEmpty(id)) {
+            LOGGER.error("参数不能为空");
+            throw new HeException(20001, "参数不能为空!");
+        }
+
+        //查询小节
+        QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
+        wrapper.eq("chapter_id", id);
+        List<EduVideo> videos = service.list(wrapper);
+
+        if (videos.size() > 0) {
+            LOGGER.error("该章节下有小节,无法删除章节！");
+            throw new HeException(20001, "该章节下有小节,无法删除章节!");
+        } else {
+            boolean flag = this.removeById(id);
+            if (!flag) {
+                LOGGER.error("删除章节失败");
+                throw new HeException(20001, "删除章节失败!");
+            }
+        }
+        return id;
+    }
+
+    @Override
+    public EduChapter detail(String id) {
+        if (StringUtils.isEmpty(id)) {
+            LOGGER.error("参数不能为空");
+            throw new HeException(20001, "参数不能为空!");
+        }
+        QueryWrapper<EduChapter> wrapper = new QueryWrapper<>();
+        wrapper.eq("id", id)
+                .select("id", "course_id", "title", "sort", "gmt_create");
+
+        EduChapter chapter = this.getOne(wrapper);
+        if (StringUtils.isEmpty(chapter)) {
+            LOGGER.error("数据库中不存在该对象");
+            throw new HeException(20001, "数据库中不存在该对象!");
+        }
+        return chapter;
     }
 }

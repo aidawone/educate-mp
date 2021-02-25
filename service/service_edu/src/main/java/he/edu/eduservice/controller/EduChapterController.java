@@ -4,10 +4,7 @@ package he.edu.eduservice.controller;
 import he.edu.commonutils.entity.ResultEntity;
 import he.edu.eduservice.entity.EduChapter;
 import he.edu.eduservice.service.EduChapterService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,7 +13,7 @@ import java.util.List;
  * 课程 前端控制器
  * </p>
  *
- * @author aidawone
+ * @auth or aidawone
  * @since 2021-02-24
  */
 @RestController
@@ -31,9 +28,34 @@ public class EduChapterController {
     }
 
     @GetMapping("/index")
-    public ResultEntity index(String id){
-        List<EduChapter> items =  service.treeChapterVideoById(id);
-        return ResultEntity.ok().data("items",items);
+    public ResultEntity index(String id) {
+        List<EduChapter> items = service.treeChapterVideoById(id);
+        return ResultEntity.ok().data("items", items);
+    }
+
+
+    @PostMapping("/add")
+    public ResultEntity add(@RequestBody EduChapter chapter) {
+        String id = service.saveChapter(chapter);
+        return ResultEntity.ok().data("id", id);
+    }
+
+    @PutMapping("/update")
+    public ResultEntity update(@RequestBody EduChapter chapter) {
+        String returnId = service.updateChapterById(chapter);
+        return ResultEntity.ok().data("id", returnId);
+    }
+
+    @DeleteMapping("/delete")
+    public ResultEntity delete(String id) {
+        String returnId = service.deleteChapterById(id);
+        return ResultEntity.ok().data("items", returnId);
+    }
+
+    @GetMapping("/detail")
+    public ResultEntity detail(String id) {
+        EduChapter chapter = service.detail(id);
+        return ResultEntity.ok().data("items", chapter);
     }
 }
 

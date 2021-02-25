@@ -16,4 +16,12 @@ import java.util.List;
 public interface EduChapterService extends IService<EduChapter> {
 
     List<EduChapter> treeChapterVideoById(String id);
+
+    String saveChapter(EduChapter chapter);
+
+    String updateChapterById(EduChapter chapter);
+
+    String deleteChapterById(String id);
+
+    EduChapter detail(String id);
 }

@@ -2,4 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="he.edu.eduservice.mapper.EduCourseMapper">
 
+    <select id="getCourseInoById" resultType="he.edu.eduservice.entity.vo.EduCourseVo">
+        select
+        ec.id,ec.teacher_id,ec.subject_id,ec.subject_parent_id,ec.title,ec.price,ec.lesson_num,ec.cover,ecd.description
+        from edu_course ec
+        inner join edu_course_description ecd
+        on ec.id = ecd.id
+        <where>
+            <if test="id!=null and id !=''">
+                ec.id = #{id}
+            </if>
+        </where>
+    </select>
+    <select id="getCoursePublishById" resultType="he.edu.eduservice.entity.vo.CoursePuishVo">
+        SELECT
+            ec.id,
+            ec.price,
+            ec.title,
+            ec.cover,
+            ec.lesson_num,
+            et.name,
+            es.title as childrenName,
+            ed.title as parentName
+        FROM
+            edu_course ec
+            INNER JOIN edu_course_description ecd ON ec.id = ecd.id
+            LEFT JOIN edu_teacher et ON ec.teacher_id = et.id
+            LEFT JOIN edu_subject es ON ec.subject_id = es.id
+            LEFT JOIN edu_subject ed ON ec.subject_parent_id = ed.id
+        <where>
+            <if test="id != null and id != ''">
+                ec.id = #{id}
+            </if>
+        </where>
+
+    </select>
+    <select id="getEntityByConditions" resultType="he.edu.eduservice.entity.EduCourse">
+        select *
+        from edu_course
+        <where>
+            <if test="courseVo.name !=null and courseVo.name!=''">
+                and title like concat('%',#{courseVo.name}, '%')
+            </if>
+            <if test="courseVo.status !=null and courseVo.status!=''">
+                <![CDATA[
+                and status = #{courseVo.status}
+                ]]>
+            </if>
+        </where>
+        order by gmt_create desc
+    </select>
 </mapper>

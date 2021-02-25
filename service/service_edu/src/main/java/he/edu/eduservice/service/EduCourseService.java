@@ -1,7 +1,10 @@
 package he.edu.eduservice.service;
 
-import he.edu.eduservice.entity.EduCourse;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import he.edu.eduservice.entity.EduCourse;
+import he.edu.eduservice.entity.vo.CoursePuishVo;
+import he.edu.eduservice.entity.vo.CourseVo;
 import he.edu.eduservice.entity.vo.EduCourseVo;
 
 /**
@@ -15,4 +18,16 @@ import he.edu.eduservice.entity.vo.EduCourseVo;
 public interface EduCourseService extends IService<EduCourse> {
 
     String saveCourseDesc(EduCourseVo vo);
+
+    EduCourseVo getCourseInfoById(String id);
+
+    String updateCourse(EduCourseVo id);
+
+    CoursePuishVo getCoursePublish(String id);
+
+    String publishById(String id);
+
+    String removeCourseInfoById(String id);
+
+    Page<EduCourse> entityByConditions(Page<EduCourse> build, CourseVo courseVo);
 }
