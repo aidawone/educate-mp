@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import he.edu.commonutils.entity.HeException;
+import he.edu.commonutils.entity.ResultEntity;
+import he.edu.eduservice.client.VodClient;
 import he.edu.eduservice.entity.EduChapter;
 import he.edu.eduservice.entity.EduCourse;
 import he.edu.eduservice.entity.EduCourseDescription;
@@ -21,6 +23,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -41,16 +46,21 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     final EduChapterService chapterService;
     final EduVideoService videoService;
 
+    final VodClient vodClient;
+
     public EduCourseServiceImpl(EduCourseDescriptionService service,
                                 EduCourseMapper mapper,
                                 EduChapterService chapterService,
-                                EduVideoService videoService) {
+                                EduVideoService videoService,
+                                VodClient vodClient) {
+
 
         this.service = service;
         this.mapper = mapper;
         this.videoService = videoService;
         this.chapterService = chapterService;
 
+        this.vodClient = vodClient;
     }
 
     @Override
@@ -148,7 +158,22 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
             LOGGER.error("参数不可为null!");
             throw new HeException(20001, "参数不可为null");
         }
+
+        //.先删除所有的视频
+        QueryWrapper<EduVideo> videoQueryWrapper = new QueryWrapper<>();
+        videoQueryWrapper.eq("course_id", id);
+        List<EduVideo> list = videoService.list(videoQueryWrapper);
         //1.删除课程
+        String ids = list.stream().map(EduVideo::getVideoSourceId).collect(Collectors.joining(","));
+        if (!StringUtils.isEmpty(ids)) {
+            ResultEntity entity = vodClient.delete(ids);
+            if (entity.getCode().equals(20001)) {
+                LOGGER.error("删除视频..服务器请求超时！");
+                throw new HeException(20001, "删除视频..服务器请求超时！！");
+            }
+        }
+
+        //删除课程
         boolean courseFlag = this.removeById(id);
         if (!courseFlag) {
             LOGGER.error("删除课程失败!");
@@ -169,8 +194,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
             throw new HeException(20001, "删除课程章节失败！");
         }
         //4.删除课程小节
-        QueryWrapper<EduVideo> videoQueryWrapper = new QueryWrapper<>();
-        videoQueryWrapper.eq("course_id", id);
+
         boolean videoFlag = videoService.remove(videoQueryWrapper);
         if (!videoFlag) {
             LOGGER.error("删除课程小节失败!");

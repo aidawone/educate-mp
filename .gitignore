@@ -18,3 +18,13 @@
 /service/service_oss/target/classes/he/edu/oss/service/FileService.class
 /service/service_oss/target/classes/he/edu/oss/controller/FileController.class
 /service/service_oss/target/classes/he/edu/oss/
+/service/service_vod/target/classes/he/edu/vod/controller/VideoController.class
+/service/service_vod/target/classes/he/edu/vod/service/impl/VideoServiceImpl.class
+/service/service_vod/target/classes/he/edu/vod/service/VideoService.class
+/service/service_vod/target/classes/he/edu/vod/utils/ConstantVodUtils.class
+/service/service_vod/target/classes/he/edu/vod/utils/VodClientUtils.class
+/service/service_vod/target/classes/he/edu/vod/VodApplication.class
+/service/service_vod/target/classes/META-INF/service_vod.kotlin_module
+/service/service_vod/target/classes/application.yml
+/service/service_vod/target/test-classes/META-INF/service_vod.kotlin_module
+/service/service_vod/service_vod.iml

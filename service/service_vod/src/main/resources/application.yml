@@ -1,0 +1,26 @@
+# 端口
+server:
+  port: 8003
+
+# 服务名
+
+alliyun:
+  vod:
+    file:
+      keyId: 11
+      keySecret: 11
+
+
+spring:
+  application:
+    name: service-vod
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+# tomcat 上传文件的大小

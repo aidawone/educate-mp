@@ -1,9 +1,12 @@
 package he.edu.eduservice.controller;
 
 
+import he.edu.commonutils.entity.HeException;
 import he.edu.commonutils.entity.ResultEntity;
+import he.edu.eduservice.client.VodClient;
 import he.edu.eduservice.entity.EduVideo;
 import he.edu.eduservice.service.EduVideoService;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -20,8 +23,10 @@ import org.springframework.web.bind.annotation.*;
 public class EduVideoController {
 
     final EduVideoService service;
+    final VodClient vodClient;
 
-    public EduVideoController(EduVideoService service) {
+    public EduVideoController(EduVideoService service, VodClient vodClient) {
+        this.vodClient = vodClient;
         this.service = service;
 
     }
@@ -46,10 +51,18 @@ public class EduVideoController {
 
     @DeleteMapping("/delete")
     public ResultEntity delete(String id) {
+        //删除小节的时候删除视频
+        //先去查询
+        EduVideo video = service.getById(id);
+        if (StringUtils.isEmpty(video)) {
+            throw new HeException(20001, "数据库对象不存在！");
+        }
+        if(!StringUtils.isEmpty(video.getVideoSourceId())){
+            vodClient.delete(video.getVideoSourceId());
+        }
         String returnId = service.deleteById(id);
+
         return ResultEntity.ok().data("id", returnId);
     }
-
-
 }
 
