@@ -1,4 +1,4 @@
-package he.edu.msm.controller.utils;
+package he.edu.msm.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.CommonRequest;

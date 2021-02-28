@@ -1,4 +1,4 @@
-package he.edu.msm.controller.utils;
+package he.edu.msm.utils;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;

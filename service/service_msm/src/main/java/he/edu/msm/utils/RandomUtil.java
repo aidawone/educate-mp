@@ -1,4 +1,4 @@
-package he.edu.msm.controller.utils;
+package he.edu.msm.utils;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

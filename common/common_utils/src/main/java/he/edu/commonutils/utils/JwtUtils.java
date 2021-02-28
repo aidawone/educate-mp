@@ -21,7 +21,7 @@ public class JwtUtils {
 
     public static final String APP_SECRET = "KeV9cPgkZ&vvcvOl&x8gny7ILkK0@y%1";
 
-    public static String getJwtToken(Object object) {
+    public static String getJwtToken(String id, String name) {
         String JwtToken = Jwts.builder()
                 .setHeaderParam("typ", "JWT")
                 .setHeaderParam("alg", "HS256")
@@ -30,7 +30,8 @@ public class JwtUtils {
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRE))
 
-                .claim("user", object)
+                .claim("id", id)
+                .claim("name", name)
 
                 .signWith(SignatureAlgorithm.HS256, APP_SECRET)
                 .compact();
@@ -65,7 +66,7 @@ public class JwtUtils {
      */
     public static boolean checkToken(HttpServletRequest request) {
         try {
-            String jwtToken = request.getHeader("Application").replace("bearer", "");
+            String jwtToken = request.getHeader("Application").replace("bearer ", "");
             if (StringUtils.isEmpty(jwtToken)) {
                 return false;
             }
@@ -84,7 +85,7 @@ public class JwtUtils {
      * @return
      */
     public static String getMemberIdByJwtToken(HttpServletRequest request) {
-        String jwtToken = request.getHeader("token");
+        String jwtToken = request.getHeader("Application").replace("bearer ", "");;
         if (StringUtils.isEmpty(jwtToken)) {
             return "";
         }

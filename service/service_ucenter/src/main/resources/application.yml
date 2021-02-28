@@ -1,0 +1,36 @@
+# 服务端口
+server:
+  port: 8006
+# 服务名
+# 数据库
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/educate?serverTimezone=GMT
+    username: root
+    password: root
+  # 服务名
+  application:
+    name: service-ucenter
+  # 环境切换
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    # 服务注册中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+# mybatis-plus调试日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # mapper 文件
+  mapper-locations: classpath*:he/edu/center/mapper/xml/*.xml
+#
+## 日志
+#logging:
+#  level: warn

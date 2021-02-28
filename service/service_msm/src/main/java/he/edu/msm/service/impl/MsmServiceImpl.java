@@ -1,7 +1,7 @@
 package he.edu.msm.service.impl;
 
-import he.edu.msm.controller.utils.MsmUtils;
-import he.edu.msm.controller.utils.RandomUtil;
+import he.edu.msm.utils.MsmUtils;
+import he.edu.msm.utils.RandomUtil;
 import he.edu.msm.service.MsmService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
