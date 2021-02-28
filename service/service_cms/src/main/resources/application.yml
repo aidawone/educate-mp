@@ -1,0 +1,56 @@
+# 服务端口
+server:
+  port: 8004
+# 服务名
+# 数据库
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/educate?serverTimezone=GMT
+    username: root
+    password: root
+  # 服务名
+  application:
+    name: service-cms
+  # 环境切换
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    # 服务注册中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  redis:
+    port: 6379
+    host: 192.168.0.101
+    password: wIe2Y%0wHXFcGY$pHy5jKDyAgYkiXa!A
+    database: 0
+    lettuce:
+      shutdown-timeout:
+    timeout: 1800000
+    jedis:
+      pool:
+        # 连接池最大连接数(使用负值表示没有限制) 默认为8
+        max-active: 20
+        # 连接池最大阻塞等待时间(使用负值表示没有限制) 默认为-1
+        max-wait: -1
+        # 连接池中的最大空闲连接 默认为8
+        max-idle: 5
+        # 连接池中的最小空闲连接 默认为 0
+        min-idle: 0
+
+
+
+# mybatis-plus调试日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # mapper 文件
+  mapper-locations: classpath*:he/edu/cms/mapper/xml/*.xml
+#
+## 日志
+#logging:
+#  level: warn
