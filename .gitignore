@@ -59,3 +59,11 @@
 /service/service_cms/target/classes/application.yml
 /service/service_cms/target/test-classes/CodeGenerator.class
 /service/service_acl/service_acl.iml
+/service/service_msm/target/classes/he/edu/msm/controller/utils/MsmPropertiesUtils.class
+/service/service_msm/target/classes/he/edu/msm/controller/utils/MsmUtils.class
+/service/service_msm/target/classes/he/edu/msm/controller/utils/RandomUtil.class
+/service/service_msm/target/classes/he/edu/msm/controller/MsmController.class
+/service/service_msm/target/classes/he/edu/msm/service/impl/MsmServiceImpl.class
+/service/service_msm/target/classes/he/edu/msm/service/MsmService.class
+/service/service_msm/target/classes/he/edu/msm/MsmApplication.class
+/service/service_msm/service_msm.iml
