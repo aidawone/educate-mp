@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @CrossOrigin
-@RequestMapping("/center/user")
+@RequestMapping("/api/user")
 public class LoginController {
     final UcenterMemberService ucenterMemberService;
 

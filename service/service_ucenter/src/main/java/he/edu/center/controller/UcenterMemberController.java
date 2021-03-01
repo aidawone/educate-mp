@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2021-02-28
  */
 @RestController
-@RequestMapping("/center/ucenter-member")
+@RequestMapping("/api/ucenter-member")
 public class UcenterMemberController {
 
 }

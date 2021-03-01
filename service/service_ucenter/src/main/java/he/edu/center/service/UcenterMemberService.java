@@ -20,4 +20,6 @@ public interface UcenterMemberService extends IService<UcenterMember> {
     void registerUser(UcenterMember member);
 
     UcenterMember infoParseToken(HttpServletRequest request);
+
+    UcenterMember getUcenterByOpenId(String openid);
 }

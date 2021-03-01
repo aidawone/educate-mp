@@ -82,3 +82,17 @@
 /service/service_ucenter/target/classes/he/edu/center/UcenterApplication.class
 /service/service_ucenter/target/classes/application.yml
 /service/service_ucenter/target/test-classes/CodeGenerator.class
+/service/service_cms/target/classes/he/edu/cms/entity/vo/EduCourseDetailVo.class
+/service/service_cms/target/classes/he/edu/cms/entity/vo/EduCourseVo.class
+/service/service_cms/target/classes/he/edu/cms/mapper/xml/CrmBannerMapper.xml
+/service/service_cms/target/classes/he/edu/cms/mapper/xml/EduChapterMapper.xml
+/service/service_cms/target/classes/he/edu/cms/mapper/xml/EduCourseMapper.xml
+/service/service_cms/target/classes/he/edu/cms/mapper/xml/EduTeacherMapper.xml
+/service/service_cms/target/classes/he/edu/cms/mapper/xml/EduVideoMapper.xml
+/service/service_ucenter/target/classes/he/edu/center/controller/WxController.class
+/service/service_ucenter/target/classes/he/edu/center/service/impl/WxServiceImpl.class
+/service/service_ucenter/target/classes/he/edu/center/service/WxService.class
+/service/service_ucenter/target/classes/he/edu/center/utils/HttpClientUtils$1.class
+/service/service_ucenter/target/classes/he/edu/center/utils/HttpClientUtils$2.class
+/service/service_ucenter/target/classes/he/edu/center/utils/HttpClientUtils.class
+/service/service_ucenter/target/classes/he/edu/center/utils/WxPropertiesUtils.class

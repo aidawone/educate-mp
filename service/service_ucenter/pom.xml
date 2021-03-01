@@ -11,7 +11,7 @@
 
     <artifactId>service_ucenter</artifactId>
 
-<!--    解决jdk9之后不再绑定jaxb API -->
+    <!--    解决jdk9之后不再绑定jaxb API -->
     <dependencies>
         <dependency>
             <groupId>javax.xml.bind</groupId>
@@ -33,6 +33,23 @@
             <artifactId>activation</artifactId>
             <version>1.1.1</version>
         </dependency>
+
+        <!--        httpclient-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <!--commons-io-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <!--gson-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
     </dependencies>
+
 
 </project>

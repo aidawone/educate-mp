@@ -34,3 +34,9 @@ mybatis-plus:
 ## 日志
 #logging:
 #  level: warn
+# 微信开放平台 appid
+wx:
+  open:
+      appid: 00
+      app_secret: 00
+      redirect_url: 00

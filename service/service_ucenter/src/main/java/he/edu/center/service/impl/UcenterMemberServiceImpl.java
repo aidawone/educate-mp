@@ -84,4 +84,12 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         entity.setPassword("");
         return entity;
     }
+
+    @Override
+    public UcenterMember getUcenterByOpenId(String openid) {
+        QueryWrapper<UcenterMember> wrapper = new QueryWrapper<>();
+        wrapper.eq("openid", openid);
+        return this.getOne(wrapper);
+
+    }
 }

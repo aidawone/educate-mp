@@ -2,4 +2,70 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="he.edu.cms.mapper.EduCourseMapper">
 
+    <select id="ListByConditionsAndOrder" resultType="he.edu.cms.entity.EduCourse">
+        select *
+        from edu_course
+        <where>
+            <if test="courseVo.title !=null and courseVo.title !=''">
+                and title like concat('%',#{courseVo.title},'%')
+            </if>
+            <if test="courseVo.subjectParentId !=null and courseVo.subjectParentId !=''">
+                and subject_parent_id = #{courseVo.subjectParentId}
+            </if>
+            <if test="courseVo.subjectId !=null and courseVo.subjectId !=''">
+                and subject_id = #{courseVo.subjectId}
+            </if>
+            <if test="courseVo.teacherId !=null and courseVo.teacherId !=''">
+                and teacher_id = #{courseVo.teacherId}
+            </if>
+        </where>
+        <trim prefix='order by'  suffixOverrides="," suffix="desc">
+            <if test="courseVo.buyCountSort != null and courseVo.buyCountSort!=''">
+                buy_count,
+            </if>
+            <if test="courseVo.gmtCreateSort != null and courseVo.gmtCreateSort!=''">
+                gmt_create,
+            </if>
+            <if test="courseVo.priceSort != null and courseVo.priceSort!=''">
+                price,
+            </if>
+        </trim>
+    </select>
+    <select id="selectDetailById" resultType="he.edu.cms.entity.vo.EduCourseDetailVo">
+        SELECT
+        ec.id,
+        ec.price,
+        ec.title,
+        ec.cover,
+        ec.lesson_num,
+        ec.cover,
+        ec.buy_count,
+
+
+        ec.view_count,
+
+        et.id as teacherId,
+        et.name as teacherName,
+        et.avatar,
+        et.intro,
+
+        ecd.description,
+
+        es.id as subjectLevelOneId,
+        es.title as subjectLevelOne,
+
+        ed.id as subjectLevelTwoId,
+        ed.title as subjectLevelTwo
+        FROM
+        edu_course ec
+        INNER JOIN edu_course_description ecd ON ec.id = ecd.id
+        LEFT JOIN edu_teacher et ON ec.teacher_id = et.id
+        LEFT JOIN edu_subject es ON ec.subject_id = es.id
+        LEFT JOIN edu_subject ed ON ec.subject_parent_id = ed.id
+        <where>
+            <if test="id != null and id != ''">
+                ec.id = #{id}
+            </if>
+        </where>
+    </select>
 </mapper>

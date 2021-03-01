@@ -1,5 +1,6 @@
 package he.edu.commonutils.utils;
 
+import he.edu.commonutils.entity.HeException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -85,7 +86,14 @@ public class JwtUtils {
      * @return
      */
     public static String getMemberIdByJwtToken(HttpServletRequest request) {
-        String jwtToken = request.getHeader("Application").replace("bearer ", "");;
+        String jwtToken;
+        try {
+            jwtToken = request.getHeader("Application").replace("bearer ", "");
+            ;
+        } catch (Exception e) {
+            throw new HeException(20001, "token不能为null");
+        }
+
         if (StringUtils.isEmpty(jwtToken)) {
             return "";
         }

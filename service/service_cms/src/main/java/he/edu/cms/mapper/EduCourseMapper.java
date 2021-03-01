@@ -1,7 +1,13 @@
 package he.edu.cms.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import he.edu.cms.entity.EduCourse;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import he.edu.cms.entity.vo.EduCourseDetailVo;
+import he.edu.cms.entity.vo.EduCourseVo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +19,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface EduCourseMapper extends BaseMapper<EduCourse> {
 
+    List<EduCourse> ListByConditionsAndOrder(@Param("build") Page<EduCourse> build, @Param("courseVo") EduCourseVo courseVo);
+
+    EduCourseDetailVo selectDetailById(@Param("id") String id);
 }
