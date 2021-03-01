@@ -1,8 +1,9 @@
 package he.edu.cms.controller;
 
 
+import he.edu.cms.service.EduChapterService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -14,8 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2021-02-27
  */
 @RestController
-@RequestMapping("/cms/edu-chapter")
+@RequestMapping("/cms/chapter")
+@CrossOrigin
 public class EduChapterController {
+    final EduChapterService service;
+
+    public EduChapterController(EduChapterService service) {
+        this.service = service;
+    }
 
 }
 

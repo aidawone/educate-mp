@@ -1,6 +1,10 @@
 package he.edu.cms.config;
 
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
+import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,5 +17,13 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("he.edu.cms.mapper")
 @ComponentScan(basePackages = {"he.edu"})
 public class CmsConfig {
+    @Bean
+    public ISqlInjector sqlInjector() {
+        return new LogicSqlInjector();
+    }
 
+    @Bean
+    public PaginationInterceptor interceptor() {
+        return new PaginationInterceptor();
+    }
 }
