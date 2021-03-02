@@ -2,6 +2,7 @@ package he.edu.vod.service.impl;
 
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoResponse;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
 import he.edu.commonutils.entity.HeException;
 import he.edu.vod.service.VideoService;
 import he.edu.vod.utils.VodClientUtils;
@@ -41,5 +42,22 @@ public class VideoServiceImpl implements VideoService {
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
         }
+    }
+
+    @Override
+    public String getPlayAuth(String id) {
+        if (StringUtils.isEmpty(id)) {
+            LOGGER.error("参数不能为空！");
+            throw new HeException(20001, "参数不能为空！");
+        }
+        DefaultAcsClient client = VodClientUtils.initVodClient();
+        GetVideoPlayAuthResponse videoPlayAuth = null;
+        try {
+            videoPlayAuth = VodClientUtils.getVideoPlayAuth(client, id);
+        } catch (Exception e) {
+            LOGGER.error("aliyun获取凭证失败！");
+            throw new HeException(20001, "aliyun获取凭证失败！");
+        }
+        return videoPlayAuth.getPlayAuth();
     }
 }

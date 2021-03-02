@@ -46,4 +46,10 @@ public class VideoController {
         videoService.deleteByIds(id);
         return ResultEntity.ok();
     }
+    //根据视频id获取视频凭证
+    @GetMapping("/playAuth")
+    public ResultEntity playAuth(String id) {
+        String auth = videoService.getPlayAuth(id);
+        return ResultEntity.ok().data("auth",auth);
+    }
 }

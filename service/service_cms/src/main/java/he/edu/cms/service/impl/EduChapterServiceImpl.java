@@ -48,7 +48,7 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
         //1.首先查询出所有的章节
         QueryWrapper<EduVideo> videoQueryWrapper = new QueryWrapper<>();
         //查询的字段
-        videoQueryWrapper.select("id", "title", "chapter_id");
+        videoQueryWrapper.select("id", "title", "chapter_id","video_source_id");
         videoQueryWrapper.eq("course_id", id);
         videoQueryWrapper.orderByDesc("sort");
         List<EduVideo> videos = service.list(videoQueryWrapper);

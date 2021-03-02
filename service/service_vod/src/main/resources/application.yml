@@ -7,8 +7,8 @@ server:
 alliyun:
   vod:
     file:
-      keyId: 11
-      keySecret: 11
+      keyId: LTAI4G33G8U6NgvPudNrR5St
+      keySecret: LUYpa61UW30DrtKmuU2jAFq8qLVVdo
 
 
 spring:

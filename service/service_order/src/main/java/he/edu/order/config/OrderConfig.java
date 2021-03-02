@@ -1,20 +1,16 @@
-package he.edu.center.config;
+package he.edu.order.config;
 
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 配置類
- *
  * @Author: aidawone
  * @Description:
- * @Date: Create in 13:04 2021/2/7
+ * @Date: Create in 14:31 2021/3/2
  */
 @Configuration
-@MapperScan("he.edu.center.mapper")
 @ComponentScan(basePackages = {"he.edu"})
-@EnableDiscoveryClient
-public class UcenterConfig {
+@MapperScan("he.edu.order.mapper")
+public class OrderConfig {
 }

@@ -42,4 +42,7 @@ public class EduCourseVo {
 
     @ApiModelProperty(value = "课程简介")
     private String description;
+
+    @ApiModelProperty(value = "课程简介")
+    private String teacherName;
 }

@@ -92,4 +92,17 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         return this.getOne(wrapper);
 
     }
+
+    @Override
+    public UcenterMember getUserById(String id) {
+        if (StringUtils.isEmpty(id)) {
+            throw new HeException(20001, "参数不可为空！");
+        }
+        UcenterMember member = this.getById(id);
+        if (StringUtils.isEmpty(member)) {
+            throw new HeException(20001, "数据库中不存在该对象！");
+        }
+
+        return member;
+    }
 }

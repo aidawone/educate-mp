@@ -89,7 +89,6 @@ public class JwtUtils {
         String jwtToken;
         try {
             jwtToken = request.getHeader("Application").replace("bearer ", "");
-            ;
         } catch (Exception e) {
             throw new HeException(20001, "token不能为null");
         }

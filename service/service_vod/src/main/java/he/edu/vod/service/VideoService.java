@@ -11,4 +11,6 @@ public interface VideoService {
     String uploadInput(String title, String fileName, InputStream inputStream);
 
     void deleteByIds(String ids);
+
+    String getPlayAuth(String id);
 }
