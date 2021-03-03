@@ -105,4 +105,13 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
 
         return member;
     }
+
+    @Override
+    public Long countMemberByDay(String day) {
+        if (StringUtils.isEmpty(day)) {
+            throw new HeException(20001, "参数不可为空！");
+        }
+        Long num = baseMapper.countUcenterByDay(day);
+        return num;
+    }
 }

@@ -33,5 +33,12 @@ public class UcenterMemberController {
         UcenterMember member = memberService.getUserById(id);
         return ResultEntity.ok().data("user", member);
     }
+
+    //统计每天创建的人数
+    @GetMapping("/loginNum")
+    public ResultEntity loginNum(String day) {
+        Long count = memberService.countMemberByDay(day);
+        return ResultEntity.ok().data("loginNum", count);
+    }
 }
 

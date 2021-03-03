@@ -1,8 +1,11 @@
-package he.edu.center;
+package he.edu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @Author: aidawone
@@ -10,9 +13,12 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @Date: Create in 13:02 2021/2/7
  */
 @SpringBootApplication
+@EnableFeignClients
 @EnableDiscoveryClient
-public class UcenterApplication {
+@EnableHystrix
+@EnableScheduling
+public class StaApplication {
     public static void main(String[] args) {
-        SpringApplication.run(UcenterApplication.class, args);
+        SpringApplication.run(StaApplication.class, args);
     }
 }

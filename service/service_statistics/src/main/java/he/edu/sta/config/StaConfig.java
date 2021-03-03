@@ -1,18 +1,16 @@
-package he.edu.center.config;
+package he.edu.sta.config;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 配置類
- *
  * @Author: aidawone
  * @Description:
- * @Date: Create in 13:04 2021/2/7
+ * @Date: Create in 13:55 2021/3/3
  */
 @Configuration
-@MapperScan("he.edu.center.mapper")
 @ComponentScan(basePackages = {"he.edu"})
-public class UcenterConfig {
+@MapperScan(basePackages = {"he.edu.sta.mapper"})
+public class StaConfig {
 }

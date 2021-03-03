@@ -2,6 +2,7 @@ package he.edu.center.mapper;
 
 import he.edu.center.entity.UcenterMember;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UcenterMemberMapper extends BaseMapper<UcenterMember> {
 
+    Long countUcenterByDay(@Param("day") String day);
 }
