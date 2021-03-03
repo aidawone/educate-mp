@@ -3,7 +3,6 @@ package he.edu.order.controller;
 
 import he.edu.commonutils.entity.ResultEntity;
 import he.edu.order.service.TPayLogService;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +19,6 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/order/pay")
-@CrossOrigin
 public class TPayLogController {
 
     final TPayLogService tPayLogService;

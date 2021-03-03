@@ -12,7 +12,6 @@ import he.edu.cms.service.EduCourseService;
 import he.edu.commonutils.entity.ResultEntity;
 import he.edu.commonutils.utils.JwtUtils;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +30,6 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/front/course")
-@CrossOrigin
 public class EduCourseController {
 
     final EduCourseService courseService;

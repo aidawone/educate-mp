@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/back/video")
-@CrossOrigin
 public class EduVideoController {
 
     final EduVideoService service;

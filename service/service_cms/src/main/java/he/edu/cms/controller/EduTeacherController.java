@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import he.edu.cms.entity.EduTeacher;
 import he.edu.cms.service.EduTeacherService;
 import he.edu.commonutils.entity.ResultEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +21,6 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/front/teacher")
-@CrossOrigin
 public class EduTeacherController {
 
     final EduTeacherService service;

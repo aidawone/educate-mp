@@ -2,7 +2,6 @@ package he.edu.oss.controller;
 
 import he.edu.commonutils.entity.ResultEntity;
 import he.edu.oss.service.OssFileService;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @RestController
 @RequestMapping("/oss/original")
-@CrossOrigin
 public class OssFileController {
 
     final OssFileService service;

@@ -19,7 +19,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/back/subject")
-@CrossOrigin
 public class EduSubjectController {
 
     final EduSubjectService subjectService;

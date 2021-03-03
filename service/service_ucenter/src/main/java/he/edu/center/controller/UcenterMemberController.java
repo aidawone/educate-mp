@@ -4,7 +4,6 @@ package he.edu.center.controller;
 import he.edu.center.entity.UcenterMember;
 import he.edu.center.service.UcenterMemberService;
 import he.edu.commonutils.entity.ResultEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/member")
-@CrossOrigin
 public class UcenterMemberController {
 
     final UcenterMemberService memberService;

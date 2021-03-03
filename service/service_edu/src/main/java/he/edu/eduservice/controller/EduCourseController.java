@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/back/course")
-@CrossOrigin
 public class EduCourseController {
 
     final EduCourseService service;

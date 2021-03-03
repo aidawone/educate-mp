@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
  * @Date: Create in 20:11 2021/2/26
  */
 @RestController
-@CrossOrigin
 @RequestMapping("/vod/video")
 public class VideoController {
     private final static Logger LOGGER = LoggerFactory.getLogger(VideoController.class);

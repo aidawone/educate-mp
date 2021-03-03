@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
  * @Date: Create in 17:55 2021/2/28
  */
 @RestController
-@CrossOrigin
 @RequestMapping("/api/user")
 public class LoginController {
     final UcenterMemberService ucenterMemberService;

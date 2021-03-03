@@ -3,7 +3,6 @@ package he.edu.sta.controller;
 
 import he.edu.commonutils.entity.ResultEntity;
 import he.edu.sta.service.StatisticsDailyService;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +19,6 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/sta/statistics")
-@CrossOrigin
 public class StatisticsDailyController {
 
     final StatisticsDailyService statisticsDailyService;

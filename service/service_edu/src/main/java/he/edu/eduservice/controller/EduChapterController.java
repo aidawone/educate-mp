@@ -18,7 +18,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/back/chapter")
-@CrossOrigin
 public class EduChapterController {
 
     final EduChapterService service;

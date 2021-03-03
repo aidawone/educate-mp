@@ -2,7 +2,6 @@ package he.edu.center.controller;
 
 import he.edu.center.service.WxService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Date: Create in 11:30 2021/3/1
  */
 @Controller
-@CrossOrigin
 @RequestMapping("/api/ucenter/wx")
 public class WxController {
 

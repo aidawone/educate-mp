@@ -142,3 +142,12 @@
 /service/service_statistics/target/classes/application.yml
 /service/service_statistics/target/test-classes/CodeGenerator.class
 /service/service_ucenter/target/classes/he/edu/center/mapper/xml/UcenterMemberMapper.xml
+/infrastructure/api_gateway/target/classes/he/edu/gateway/config/CorsConfig.class
+/infrastructure/api_gateway/target/classes/he/edu/gateway/filter/AuthGlobalFilter.class
+/infrastructure/api_gateway/target/classes/he/edu/gateway/handler/ErrorHandlerConfig.class
+/infrastructure/api_gateway/target/classes/he/edu/gateway/handler/JsonExceptionHandler.class
+/infrastructure/api_gateway/target/classes/he/edu/gateway/ApiGatewayApplication.class
+/infrastructure/api_gateway/api_gateway.iml
+/infrastructure/target/classes/META-INF/infrastructure.kotlin_module
+/infrastructure/api_gateway/target/classes/application.properties.bak
+/infrastructure/api_gateway/target/classes/application.yml

@@ -1,0 +1,48 @@
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: service-edu
+          uri: lb://service-edu
+          predicates:
+            - Path=/back/**
+        - id: service-cms
+          uri: lb://service-cms
+          predicates:
+            - Path=/front/** # 路径匹配
+        - id: service-msm
+          uri: lb://service-msm
+          predicates:
+            - Path=/ali/** # 路径匹配
+        - id: service-order
+          uri: lb://service-order
+          predicates:
+            - Path=/order/** # 路径匹配
+        - id: service-oss
+          uri: lb://service-oss
+          predicates:
+            - Path=/oss/** # 路径匹配
+        - id: service-statistics
+          uri: lb://service-statistics
+          predicates:
+            - Path=/sta/** # 路径匹配
+        - id: service-ucenter
+          uri: lb://service-ucenter
+          predicates:
+            - Path=/api/** # 路径匹配
+        - id: service-vod
+          uri: lb://service-vod
+          predicates:
+            - Path=/vod/** # 路径匹配
+
+  application:
+    name: service-gateway
+server:
+  port: 8222

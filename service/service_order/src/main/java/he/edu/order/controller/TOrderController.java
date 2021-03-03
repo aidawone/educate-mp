@@ -4,10 +4,8 @@ package he.edu.order.controller;
 import he.edu.commonutils.entity.ResultEntity;
 import he.edu.order.entity.TOrder;
 import he.edu.order.service.TOrderService;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/order/order")
-@CrossOrigin
 public class TOrderController {
 
     final TOrderService service;
