@@ -20,23 +20,23 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    @Bean
-    public Docket webApiConfig() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("webApi")
-                .apiInfo(webApiInfo())
-                .select()
-                .paths(Predicates.not(PathSelectors.regex("/admin/.*")))
-                .paths(Predicates.not(PathSelectors.regex("/error.*")))
-                .build();
-    }
+  @Bean
+  public Docket webApiConfig() {
+    return new Docket(DocumentationType.SWAGGER_2)
+            .groupName("webApi")
+            .apiInfo(webApiInfo())
+            .select()
+//            .paths(Predicates.not(PathSelectors.regex("/admin/.*")))
+            .paths(Predicates.not(PathSelectors.regex("/error.*")))
+            .build();
+  }
 
-    private ApiInfo webApiInfo() {
-        return new ApiInfoBuilder()
-                .title("平台中心API文档")
-                .description("本文档描述了平台中心微服务接口定义")
-                .version("1.0")
-                .contact(new Contact("aidawone", "http://aidwone.com", "2194488348@qq.com"))
-                .build();
-    }
+  private ApiInfo webApiInfo() {
+    return new ApiInfoBuilder()
+            .title("平台中心API文档")
+            .description("本文档描述了平台中心微服务接口定义")
+            .version("1.0")
+            .contact(new Contact("aidawone", "http://aidwone.com", "2194488348@qq.com"))
+            .build();
+  }
 }
